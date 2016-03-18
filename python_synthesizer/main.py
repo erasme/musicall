@@ -77,10 +77,13 @@ if __name__ == '__main__':
 				# Populate array of samples (waves)
 				for i, val in enumerate(values):
 					if isInt(val) and int(val) > 0:
-						waves.append( sine( int(220+(220/12)*2*i) )
+						ha = 220+(220/12)*2*i
+						print ha
+						waves.append( sine( int( ha ) )
 						
+				# print waves
 				# Apply volume to each sample	
-				if len(waves) > 0:
+				if len(waves) :
 					for k, wav in enumerate(waves):
 						waves[k] = wav*1.5/len(waves)
 		
