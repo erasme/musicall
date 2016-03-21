@@ -1,11 +1,8 @@
-
-import pygame
 import sys
 import os
 import subprocess
 import serial
-import random, time
-import psutil
+import random
 import signal as syssig
 from HDmx import DmxPy
 
