@@ -107,7 +107,6 @@ class Barreau:
 	# State READY
 	def ready(self, percent=1.0):
 		self.segments[self.target].ready(percent)
-		print "BAR Ready, target PIN: "+str(self.segments[self.target].pin)
 
 	# Event TOUCH
 	def touch(self, pin):
