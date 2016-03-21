@@ -123,7 +123,7 @@ class Barreau:
 				print 'Touched the wrong SEG'
 				return True
 
-		print 'Touched outside the BAR'
+		# print 'Touched outside the BAR'
 		return False
 
 	# Event RELEASE
