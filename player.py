@@ -14,7 +14,7 @@ CONFIG = []
 for i in range(4):
 	bar = []
 	for j in range(1):
-		bar.append([2+i, 324+i+j, NOTES[j]])
+		bar.append([2+i, 324+i+j, NOTES[i]])
 	CONFIG.append(bar)
 # CONFIG.append([ [2, 324, "Do"], [2, 325, "Fa"], [2, 326, "Sol"], [2, 327, "Do_aigu"] ])
 # CONFIG.append([ [3, 321, "Fa"], [3, 321, "Fa"], [3, 321, "Fa"], [3, 321, "Fa"] ])
