@@ -27,9 +27,6 @@ LED_ERROR = 10
 
 # SONS
 SOUND_PATH = os.path.join(os.getcwd(), "sons")
-pygame.mixer.init()
-pygame.mixer.pre_init(44100, -16, 2, 2048)
-pygame.init()
 
 # CTRL-C Handler
 RUN = True
