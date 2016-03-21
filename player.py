@@ -13,8 +13,8 @@ NOTES = ["Do", "Fa", "Sol", "Do_aigu"]
 CONFIG = []
 for i in range(4):
 	bar = []
-	for j in range(1):
-		bar.append([2+i, 324+i+j, NOTES[i]])
+	for j in range(4):
+		bar.append([2+i, 324+i+j, NOTES[i]])  # Replace with NOTES[j]
 	CONFIG.append(bar)
 # CONFIG.append([ [2, 324, "Do"], [2, 325, "Fa"], [2, 326, "Sol"], [2, 327, "Do_aigu"] ])
 # CONFIG.append([ [3, 321, "Fa"], [3, 321, "Fa"], [3, 321, "Fa"], [3, 321, "Fa"] ])
