@@ -6,16 +6,20 @@ import random
 import signal as syssig
 from HDmx import DmxPy
 
+# NOTES
+NOTES = ["Do", "Fa", "Sol", "Do_aigu"]
+
 # CONFIG
 CONFIG = []
-# CONFIG.append([ [2, 321, "Do"], [2, 321, "Do"], [2, 321, "Do"], [2, 321, "Do"] ])
+for i in range(4):
+	bar = []
+	for j in range(4):
+		bar.append([2+i, 324+i+j, NOTES[j]])
+	CONFIG.append(bar)
+# CONFIG.append([ [2, 324, "Do"], [2, 325, "Fa"], [2, 326, "Sol"], [2, 327, "Do_aigu"] ])
 # CONFIG.append([ [3, 321, "Fa"], [3, 321, "Fa"], [3, 321, "Fa"], [3, 321, "Fa"] ])
 # CONFIG.append([ [4, 321, "Sol"], [4, 321, "Sol"], [4, 321, "Sol"], [4, 321, "Sol"] ])
 # CONFIG.append([ [5, 321, "Do_aigu"], [5, 321, "Do_aigu"], [5, 321, "Do_aigu"], [5, 321, "Do_aigu"] ])
-CONFIG.append([ [2, 324, "Do"] ])
-CONFIG.append([ [3, 325, "Fa"] ])
-CONFIG.append([ [4, 326, "Sol"] ])
-CONFIG.append([ [5, 327, "Do_aigu"] ])
 
 SEGMENT_PRE = 3		# Number of Segment to introduce (minimum 1)
 SEGMENT_KEEP = 1	# Number of Segment to keep playing while note active anymore
