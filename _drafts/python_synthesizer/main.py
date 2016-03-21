@@ -48,7 +48,7 @@ def isInt(s):
 if __name__ == '__main__':
 
 	# Open arduino Serial // timeout for the readline function (adjust to prevent sound chop)
-	arduino = serial.Serial('/dev/ttyACM0', 9600, timeout=0.1)
+	arduino = serial.Serial('/dev/ttyACM1', 9600, timeout=0.1)
 	
 	# Handle CTRL-C
 	syssig.signal(syssig.SIGINT, signal_handler)
