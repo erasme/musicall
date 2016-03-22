@@ -240,7 +240,7 @@ if __name__ == '__main__':
 
 				#Touch event
 				if val_read[2] == '1':
-					
+
 					# Start Barriere on first touch
 					if INIT_STATE:
 						dmx_interface.setall(100)
@@ -250,6 +250,7 @@ if __name__ == '__main__':
 					# Transfer Touch Event
 					else:
 						barriere.touch(int(val_read[1]))
+						print val_read_raw
 
 				# Release event
 				# elif not INIT_STATE:
