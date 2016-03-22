@@ -236,6 +236,7 @@ if __name__ == '__main__':
 	# TEST Sequence
 	print ".:: MUSICALL Started ::."
 	INIT_STATE = True
+	CALIBRATING = True
 
 	# TEST DMX
 	sys.stdout.write  ("Testing DMX ... ")
@@ -262,26 +263,30 @@ if __name__ == '__main__':
 		if val_read_raw != "":
 			print val_read_raw
 			val_read = val_read_raw.split(":")
-			if val_read[0] == 'Calibrated':
-				dmx_interface.setall(2)
-				dmx_interface.render()
 
-			if val_read[0] == 'PIN':
+			if CALIBRATING:
+				if val_read[0] == 'Calibrated':
+					dmx_interface.setall(2)
+					dmx_interface.render()
+					CALIBRATING = False
+					
+			else:
+				if val_read[0] == 'PIN':
 
-				#Touch event
-				if val_read[2] == '1':
+					#Touch event
+					if val_read[2] == '1':
 
-					# Start Barriere on first touch
-					if INIT_STATE:
-						dmx_interface.setall(0)
-						dmx_interface.render()
-						barriere.start()
-						INIT_STATE = False
+						# Start Barriere on first touch
+						if INIT_STATE:
+							dmx_interface.setall(0)
+							dmx_interface.render()
+							barriere.start()
+							INIT_STATE = False
 
-					# Transfer Touch Event
-					else:
-						barriere.touch(int(val_read[1]))
+						# Transfer Touch Event
+						else:
+							barriere.touch(int(val_read[1]))
 
-				# Release event
-				# elif not INIT_STATE:
-				# 	barriere.release(int(val_read[1]))
+						# Release event
+						# elif not INIT_STATE:
+						# 	barriere.release(int(val_read[1]))
