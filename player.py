@@ -1,5 +1,4 @@
-import sys
-import os
+import sys, os, time
 import subprocess
 import serial
 import random
@@ -225,10 +224,17 @@ if __name__ == '__main__':
 	# CREATE BARRIERE
 	barriere = Barriere(CONFIG)
 
+	# TEST Sequence
 	print ".:: MUSICALL Started ::."
 	INIT_STATE = True
 	dmx_interface.setall(3)
 	dmx_interface.render()
+
+	for n in NOTES:
+		seg = Segment([0,0,n]);
+		seg.play()
+		time.sleep(1)
+		seg.stop()
 
 	while RUN:
 
