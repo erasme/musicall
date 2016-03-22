@@ -227,7 +227,7 @@ if __name__ == '__main__':
 
 	print ".:: MUSICALL Started ::."
 	INIT_STATE = True
-	dmx_interface.setall(100)
+	dmx_interface.setall(3)
 	dmx_interface.render()
 
 	while RUN:
