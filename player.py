@@ -244,7 +244,7 @@ if __name__ == '__main__':
 	for n in NOTES:
 		seg = Segment([0,0,n]);
 		seg.play()
-		time.sleep(1)
+		time.sleep(0.5)
 		seg.stop()
 	print "done"
 
