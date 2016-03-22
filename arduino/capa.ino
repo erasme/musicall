@@ -31,7 +31,7 @@ uint8_t readCapacitivePin(int pinToMeasure) {
   // Now see how long the pin to get pulled up. This manual unrolling of the loop
   // decreases the number of hardware cycles between each read of the pin,
   // thus increasing sensitivity.
-  uint8_t cycles = 17;
+  uint8_t cycles = 45;
   if (*pin & bitmask) {
     cycles = 0;
   }
@@ -82,6 +82,90 @@ uint8_t readCapacitivePin(int pinToMeasure) {
   }
   else if (*pin & bitmask) {
     cycles = 16;
+  }
+  else if (*pin & bitmask) {
+    cycles = 17;
+  }
+  else if (*pin & bitmask) {
+    cycles = 18;
+  }
+  else if (*pin & bitmask) {
+    cycles = 19;
+  }
+  else if (*pin & bitmask) {
+    cycles = 20;
+  }
+  else if (*pin & bitmask) {
+    cycles = 21;
+  }
+  else if (*pin & bitmask) {
+    cycles = 22;
+  }
+  else if (*pin & bitmask) {
+    cycles = 23;
+  }
+  else if (*pin & bitmask) {
+    cycles = 24;
+  }
+  else if (*pin & bitmask) {
+    cycles = 25;
+  }
+  else if (*pin & bitmask) {
+    cycles = 26;
+  }
+  else if (*pin & bitmask) {
+    cycles = 27;
+  }
+  else if (*pin & bitmask) {
+    cycles = 28;
+  }
+  else if (*pin & bitmask) {
+    cycles = 29;
+  }
+  else if (*pin & bitmask) {
+    cycles = 30;
+  }
+  else if (*pin & bitmask) {
+    cycles = 31;
+  }
+  else if (*pin & bitmask) {
+    cycles = 32;
+  }
+  else if (*pin & bitmask) {
+    cycles = 33;
+  }
+  else if (*pin & bitmask) {
+    cycles = 34;
+  }
+  else if (*pin & bitmask) {
+    cycles = 35;
+  }
+  else if (*pin & bitmask) {
+    cycles = 36;
+  }
+  else if (*pin & bitmask) {
+    cycles = 37;
+  }
+  else if (*pin & bitmask) {
+    cycles = 38;
+  }
+  else if (*pin & bitmask) {
+    cycles = 39;
+  }
+  else if (*pin & bitmask) {
+    cycles = 40;
+  }
+  else if (*pin & bitmask) {
+    cycles = 41;
+  }
+  else if (*pin & bitmask) {
+    cycles = 42;
+  }
+  else if (*pin & bitmask) {
+    cycles = 43;
+  }
+  else if (*pin & bitmask) {
+    cycles = 44;
   }
   // End of timing-critical section; turn interrupts back on if they were on before, or leave them off if they were off before
   SREG = SREG_old;
