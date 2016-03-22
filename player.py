@@ -40,7 +40,7 @@ def quit(signal, frame):
 	global RUN
 	RUN = False
 	if DMX_ENABLE:
-		dmx_interface.blackout()
+		dmx_interface.setall(0)
 		dmx_interface.render()
 	print('You pressed Ctrl+C!')
 
@@ -70,27 +70,27 @@ class Segment:
 	# State OFF
 	def off(self):
 		if DMX_ENABLE:
-			dmx_interface.setChannel(self.dmx, LED_OFF)
+			dmx_interface.set(self.dmx, LED_OFF)
 			dmx_interface.render()
 		self.stop()
 
 	# State READY
 	def ready(self, percent=1.0):
 		if DMX_ENABLE:
-			dmx_interface.setChannel(self.dmx, int(LED_READY*percent) )
+			dmx_interface.set(self.dmx, int(LED_READY*percent) )
 			dmx_interface.render()
 
 	# State ACTIVE
 	def active(self):
 		if DMX_ENABLE:
-			dmx_interface.setChannel(self.dmx, LED_ACTIVE)
+			dmx_interface.set(self.dmx, LED_ACTIVE)
 			dmx_interface.render()
 		self.play(self.note)
 
 	# State ERROR
 	def error(self):
 		if DMX_ENABLE:
-			dmx_interface.setChannel(self.dmx, LED_ERROR)
+			dmx_interface.set(self.dmx, LED_ERROR)
 			dmx_interface.render()
 		self.play("error")
 
@@ -211,7 +211,7 @@ if __name__ == '__main__':
 		print "DMX disabled"
 
 	if DMX_ENABLE:
-		dmx_interface.blackout()
+		dmx_interface.setall(0)
 		dmx_interface.render()
 
 
@@ -224,18 +224,33 @@ if __name__ == '__main__':
 
 	# CREATE BARRIERE
 	barriere = Barriere(CONFIG)
-	barriere.start()
 
 	print ".:: MUSICALL Started ::."
+	INIT_STATE = True
+	dmx_interface.setall(100)
 
 	while RUN:
+
 		# Read arduino serial
 		val_read_raw = arduino.readline().strip()
 		if val_read_raw != "":
 			print val_read_raw
 			val_read = val_read_raw.split(":")
 			if val_read[0] == 'PIN':
+
+				#Touch event
 				if val_read[2] == '1':
-					barriere.touch(int(val_read[1]))
-				else:
-					barriere.release(int(val_read[1]))
+					
+					# Start Barriere on first touch
+					if INIT_STATE:
+						dmx_interface.setall(100)
+						barriere.start()
+						INIT_STATE = False
+
+					# Transfer Touch Event
+					else:
+						barriere.touch(int(val_read[1]))
+
+				# Release event
+				# elif not INIT_STATE:
+				# 	barriere.release(int(val_read[1]))
