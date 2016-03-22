@@ -29,8 +29,8 @@ SEGMENT_PRE = 1		# Number of Segment to introduce (minimum 1)
 SEGMENT_KEEP = 0	# Number of Segment to keep playing while note active anymore
 
 LED_OFF = 0
-LED_READY = 20
-LED_ACTIVE = 100
+LED_READY = 5
+LED_ACTIVE = 200
 LED_ERROR = 0
 
 DMX_ENABLE = True
