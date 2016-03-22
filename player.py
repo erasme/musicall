@@ -1,4 +1,3 @@
-from __future__ import print_function
 import sys, os, time
 import subprocess
 import serial
@@ -43,7 +42,7 @@ def quit(signal=None, frame=None):
 	if DMX_ENABLE:
 		dmx_interface.setall(0)
 		dmx_interface.render()
-	print('.:: MUSICALL Ciao !::.')
+	print '.:: MUSICALL Ciao !::.'
 	sys.exit(0)
 
 # SEGMENT
@@ -126,14 +125,14 @@ class Barreau:
 		# Good segment touched
 		if self.segments[self.target].pin == pin:
 			self.segments[self.target].active()
-			print ('Touched the good SEG')
+			print 'Touched the good SEG'
 			return True
 
 		# Wrong segment touched
 		for seg in self.segments:
 			if seg.pin == pin:
 				self.segments[self.target].error()
-				print ('Touched the wrong SEG')
+				print 'Touched the wrong SEG'
 				return True
 
 		# print 'Touched outside the BAR'
@@ -144,7 +143,7 @@ class Barreau:
 		# Inner segment released
 		for seg in self.segments:
 			if seg.pin == pin:
-				print ('Released BAR')
+				print 'Released BAR'
 				return True
 
 		return False
@@ -210,7 +209,7 @@ if __name__ == '__main__':
 		dmx_interface = DmxPy.DmxPy('/dev/ttyUSB0')
 	except:
 		DMX_ENABLE = False
-		print ("DMX disabled")
+		print "DMX disabled"
 
 	if DMX_ENABLE:
 		dmx_interface.setall(0)
@@ -221,40 +220,40 @@ if __name__ == '__main__':
 	try:
 		arduino = serial.Serial('/dev/ttyACM0', 9600, timeout=0.01)
 	except:
-		print ("No Arduino found at "+"/dev/ttyACM0")
+		print "No Arduino found at "+"/dev/ttyACM0"
 		quit()
 
 	# CREATE BARRIERE
 	barriere = Barriere(CONFIG)
 
 	# TEST Sequence
-	print (".:: MUSICALL Started ::.")
+	print ".:: MUSICALL Started ::."
 	INIT_STATE = True
 
 	# TEST DMX
-	print ("Testing DMX ... ", end="")
+	sys.stdout.write  ("Testing DMX ... ")
 	dmx_interface.setall(250)
 	dmx_interface.render()
 	time.sleep(1)
 	dmx_interface.setall(3)
 	dmx_interface.render()
-	print ("done")
+	print "done"
 
 	# TEST Sound
-	print ("Testing SOUND ... ", end="")
+	sys.stdout.write ("Testing SOUND ... ")
 	for n in NOTES:
 		seg = Segment([0,0,n]);
 		seg.play()
 		time.sleep(1)
 		seg.stop()
-	print ("done")
+	print "done"
 
 	while RUN:
 
 		# Read arduino serial
 		val_read_raw = arduino.readline().strip()
 		if val_read_raw != "":
-			print (val_read_raw)
+			print val_read_raw
 			val_read = val_read_raw.split(":")
 			if val_read[0] == 'PIN':
 
