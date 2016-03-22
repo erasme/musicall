@@ -99,12 +99,14 @@ class Barreau:
 	def __init__(self, config):
 		self.segments = []
 		self.target = -1
+		self.state = 0
 		for seg_conf in config:
 			self.segments.append( Segment(seg_conf) )
 
 	# Stop all segments, and remove target
 	def stop(self):
 		self.target = -1
+		self.init()
 		for seg in self.segments:
 			seg.off()
 
@@ -165,8 +167,6 @@ class Barriere:
 	# Init every BAR and start sequence
 	def start(self):
 		self.stop()
-		for bar in self.barreaux:
-			bar.init()
 		self.next()
 
 	def next(self):
