@@ -15,6 +15,7 @@ CONFIG = []
 CONFIG.append([ [2, 259, "Do"], [3, 258, "Fa"], [4, 257, "Sol"], [5, 256, "Do_aigu"]  ])
 CONFIG.append([ [6, 263, "Do"], [7, 262, "Fa"], [8, 261, "Sol"], [9, 260, "Do_aigu"]  ])
 CONFIG.append([ [10, 267, "Do"], [11, 266, "Fa"], [12, 265, "Sol"], [13, 264, "Do_aigu"]  ])
+CONFIG.append([ [14, 271, "Do"], [15, 270, "Fa"], [16, 269, "Sol"], [17, 268, "Do_aigu"]  ])
 
 SEGMENT_PRE = 1		# Number of Segment to introduce (minimum 1)
 SEGMENT_KEEP = 0	# Number of Segment to keep playing while note active anymore
