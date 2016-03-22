@@ -1,4 +1,4 @@
-#define DIGIPINMAX 5
+#define DIGIPINMAX 50
 bool values[ DIGIPINMAX+1 ];
 int triggers[ DIGIPINMAX+1 ];
 const int RESILIENCE = 7;

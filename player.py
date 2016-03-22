@@ -20,10 +20,8 @@ CONFIG = []
 # CONFIG.append([ [3, 321, "Fa"], [3, 321, "Fa"], [3, 321, "Fa"], [3, 321, "Fa"] ])
 # CONFIG.append([ [4, 321, "Sol"], [4, 321, "Sol"], [4, 321, "Sol"], [4, 321, "Sol"] ])
 # CONFIG.append([ [5, 321, "Do_aigu"], [5, 321, "Do_aigu"], [5, 321, "Do_aigu"], [5, 321, "Do_aigu"] ])
-CONFIG.append([ [2, 263, "Do"] ])
-CONFIG.append([ [3, 262, "Fa"] ])
-CONFIG.append([ [4, 261, "Sol"] ])
-CONFIG.append([ [5, 260, "Do_aigu"] ])
+CONFIG.append([ [2, 263, "Do"], [3, 262, "Fa"], [4, 261, "Sol"], [5, 260, "Do_aigu"]  ])
+CONFIG.append([ [6, 267, "Do"], [7, 266, "Fa"], [8, 265, "Sol"], [9, 264, "Do_aigu"]  ])
 
 SEGMENT_PRE = 1		# Number of Segment to introduce (minimum 1)
 SEGMENT_KEEP = 0	# Number of Segment to keep playing while note active anymore
@@ -269,7 +267,7 @@ if __name__ == '__main__':
 					dmx_interface.setall(2)
 					dmx_interface.render()
 					CALIBRATING = False
-					
+
 			else:
 				if val_read[0] == 'PIN':
 
