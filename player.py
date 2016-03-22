@@ -227,14 +227,24 @@ if __name__ == '__main__':
 	# TEST Sequence
 	print ".:: MUSICALL Started ::."
 	INIT_STATE = True
+
+	# TEST DMX
+	print "Testing DMX ... ",
+	dmx_interface.setall(250)
+	dmx_interface.render()
+	time.sleep(1)
 	dmx_interface.setall(3)
 	dmx_interface.render()
+	print "done"
 
+	# TEST Sound
+	print "Testing SOUND ... ",
 	for n in NOTES:
 		seg = Segment([0,0,n]);
 		seg.play()
 		time.sleep(1)
 		seg.stop()
+	print "done"
 
 	while RUN:
 
