@@ -19,6 +19,14 @@ CONFIG.append([ [14, 271, "Do"], [15, 270, "Fa"], [16, 269, "Sol"], [17, 268, "D
 CONFIG.append([ [18, 275, "Do"], [19, 274, "Fa"], [20, 273, "Sol"], [21, 272, "Do_aigu"]  ])
 CONFIG.append([ [22, 279, "Do"], [23, 278, "Fa"], [24, 277, "Sol"], [25, 276, "Do_aigu"]  ])
 
+CONFIG.append([ [26, 291, "Do"], [27, 290, "Fa"], [28, 289, "Sol"], [29, 288, "Do_aigu"]  ])
+CONFIG.append([ [30, 295, "Do"], [31, 294, "Fa"], [32, 293, "Sol"], [33, 292, "Do_aigu"]  ])
+CONFIG.append([ [34, 299, "Do"], [35, 298, "Fa"], [36, 297, "Sol"], [37, 296, "Do_aigu"]  ])
+CONFIG.append([ [38, 303, "Do"], [39, 302, "Fa"], [40, 301, "Sol"], [41, 300, "Do_aigu"]  ])
+CONFIG.append([ [42, 307, "Do"], [43, 306, "Fa"], [44, 305, "Sol"], [45, 304, "Do_aigu"]  ])
+CONFIG.append([ [46, 311, "Do"], [47, 310, "Fa"], [48, 309, "Sol"], [49, 308, "Do_aigu"]  ])
+
+
 SEGMENT_PRE = 1		# Number of Segment to introduce (minimum 1)
 SEGMENT_KEEP = 0	# Number of Segment to keep playing while note active anymore
 
