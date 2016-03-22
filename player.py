@@ -11,17 +11,10 @@ NOTES = ["Do", "Fa", "Sol", "Do_aigu"]
 
 # CONFIG
 CONFIG = []
-# for i in range(4):
-# 	bar = []
-# 	for j in range(1):
-# 		bar.append([2+i, 260+4-i+(j*4), NOTES[i]])  # Replace with 2+i+j && NOTES[j]
-# 	CONFIG.append(bar)
-# CONFIG.append([ [2, 263, "Do"], [3, 262, "Fa"], [4, 326, "Sol"], [5, 327, "Do_aigu"] ])
-# CONFIG.append([ [3, 321, "Fa"], [3, 321, "Fa"], [3, 321, "Fa"], [3, 321, "Fa"] ])
-# CONFIG.append([ [4, 321, "Sol"], [4, 321, "Sol"], [4, 321, "Sol"], [4, 321, "Sol"] ])
-# CONFIG.append([ [5, 321, "Do_aigu"], [5, 321, "Do_aigu"], [5, 321, "Do_aigu"], [5, 321, "Do_aigu"] ])
-CONFIG.append([ [2, 263, "Do"], [3, 262, "Fa"], [4, 261, "Sol"], [5, 260, "Do_aigu"]  ])
-CONFIG.append([ [6, 267, "Do"], [7, 266, "Fa"], [8, 265, "Sol"], [9, 264, "Do_aigu"]  ])
+
+#CONFIG.append([ [2, 259, "Do"], [3, 258, "Fa"], [4, 257, "Sol"], [5, 256, "Do_aigu"]  ])
+CONFIG.append([ [6, 263, "Do"], [7, 262, "Fa"], [8, 261, "Sol"], [9, 260, "Do_aigu"]  ])
+CONFIG.append([ [10, 267, "Do"], [11, 266, "Fa"], [12, 265, "Sol"], [13, 264, "Do_aigu"]  ])
 
 SEGMENT_PRE = 1		# Number of Segment to introduce (minimum 1)
 SEGMENT_KEEP = 0	# Number of Segment to keep playing while note active anymore
