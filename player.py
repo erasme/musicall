@@ -228,6 +228,7 @@ if __name__ == '__main__':
 	print ".:: MUSICALL Started ::."
 	INIT_STATE = True
 	dmx_interface.setall(100)
+	dmx_interface.render()
 
 	while RUN:
 
@@ -243,7 +244,8 @@ if __name__ == '__main__':
 
 					# Start Barriere on first touch
 					if INIT_STATE:
-						dmx_interface.setall(100)
+						dmx_interface.setall(0)
+						dmx_interface.render()
 						barriere.start()
 						INIT_STATE = False
 
