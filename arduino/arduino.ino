@@ -45,7 +45,8 @@ void setup() {
     Serial.print(":");
   }
   Serial.println("");
-
+  
+  Serial.println("Calibrated");
   
   
 }

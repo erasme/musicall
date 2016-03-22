@@ -241,9 +241,6 @@ if __name__ == '__main__':
 	sys.stdout.write  ("Testing DMX ... ")
 	dmx_interface.setall(20)
 	dmx_interface.render()
-	time.sleep(1)
-	dmx_interface.setall(3)
-	dmx_interface.render()
 	print "done"
 
 	# TEST Sound
@@ -251,10 +248,10 @@ if __name__ == '__main__':
 	for n in NOTES:
 		seg = Segment([0,0,n]);
 		seg.play()
-		time.sleep(0.5)
+		time.sleep(0.3)
 		seg.stop()
 	seg.play("error")
-	time.sleep(0.5)
+	time.sleep(0.3)
 	seg.stop()
 	print "done"
 
@@ -265,6 +262,10 @@ if __name__ == '__main__':
 		if val_read_raw != "":
 			print val_read_raw
 			val_read = val_read_raw.split(":")
+			if val_read[0] == 'Calibrated':
+				dmx_interface.setall(2)
+				dmx_interface.render()
+
 			if val_read[0] == 'PIN':
 
 				#Touch event
