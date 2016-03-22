@@ -13,21 +13,21 @@ NOTES = ["Do", "Fa", "Sol", "Do_aigu"]
 CONFIG = []
 for i in range(4):
 	bar = []
-	for j in range(4):
-		bar.append([2+i, 324+i+j, NOTES[i]])  # Replace with 2+i+j && NOTES[j]
+	for j in range(1):
+		bar.append([2+i, 260+4-i+(j*4), NOTES[i]])  # Replace with 2+i+j && NOTES[j]
 	CONFIG.append(bar)
 # CONFIG.append([ [2, 324, "Do"], [2, 325, "Fa"], [2, 326, "Sol"], [2, 327, "Do_aigu"] ])
 # CONFIG.append([ [3, 321, "Fa"], [3, 321, "Fa"], [3, 321, "Fa"], [3, 321, "Fa"] ])
 # CONFIG.append([ [4, 321, "Sol"], [4, 321, "Sol"], [4, 321, "Sol"], [4, 321, "Sol"] ])
 # CONFIG.append([ [5, 321, "Do_aigu"], [5, 321, "Do_aigu"], [5, 321, "Do_aigu"], [5, 321, "Do_aigu"] ])
 
-SEGMENT_PRE = 3		# Number of Segment to introduce (minimum 1)
-SEGMENT_KEEP = 1	# Number of Segment to keep playing while note active anymore
+SEGMENT_PRE = 1		# Number of Segment to introduce (minimum 1)
+SEGMENT_KEEP = 0	# Number of Segment to keep playing while note active anymore
 
 LED_OFF = 0
-LED_READY = 30
-LED_ACTIVE = 250
-LED_ERROR = 10
+LED_READY = 20
+LED_ACTIVE = 100
+LED_ERROR = 0
 
 DMX_ENABLE = True
 
@@ -40,8 +40,9 @@ def quit(signal=None, frame=None):
 	global RUN
 	RUN = False
 	if DMX_ENABLE:
-		dmx_interface.setall(0)
-		dmx_interface.render()
+		#dmx_interface.setall(0)
+		#dmx_interface.render()
+		pass
 	print '.:: MUSICALL Ciao !::.'
 	sys.exit(0)
 
@@ -234,7 +235,7 @@ if __name__ == '__main__':
 
 	# TEST DMX
 	sys.stdout.write  ("Testing DMX ... ")
-	dmx_interface.setall(250)
+	dmx_interface.setall(20)
 	dmx_interface.render()
 	time.sleep(1)
 	dmx_interface.setall(3)
