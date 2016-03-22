@@ -12,7 +12,7 @@ NOTES = ["Do", "Fa", "Sol", "Do_aigu"]
 # CONFIG
 CONFIG = []
 
-#CONFIG.append([ [2, 259, "Do"], [3, 258, "Fa"], [4, 257, "Sol"], [5, 256, "Do_aigu"]  ])
+CONFIG.append([ [2, 259, "Do"], [3, 258, "Fa"], [4, 257, "Sol"], [5, 256, "Do_aigu"]  ])
 CONFIG.append([ [6, 263, "Do"], [7, 262, "Fa"], [8, 261, "Sol"], [9, 260, "Do_aigu"]  ])
 CONFIG.append([ [10, 267, "Do"], [11, 266, "Fa"], [12, 265, "Sol"], [13, 264, "Do_aigu"]  ])
 
