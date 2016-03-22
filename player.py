@@ -226,6 +226,8 @@ if __name__ == '__main__':
 	barriere = Barriere(CONFIG)
 	barriere.start()
 
+	print ".:: MUSICALL Started ::."
+
 	while RUN:
 		# Read arduino serial
 		val_read_raw = arduino.readline().strip()
