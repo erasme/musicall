@@ -59,10 +59,10 @@ class Segment:
 			self.player = None
 
 	# Music PLAY
-	def play(self, file):
+	def play(self):
 		if self.player:
 			self.stop()
-		audiofile = os.path.join(SOUND_PATH, file+".wav")
+		audiofile = os.path.join(SOUND_PATH, self.note+".wav")
 		self.player = subprocess.Popen(["aplay", audiofile], stdout=subprocess.PIPE,
                            stderr=subprocess.PIPE)
 
@@ -84,7 +84,7 @@ class Segment:
 		if DMX_ENABLE:
 			dmx_interface.set(self.dmx, LED_ACTIVE)
 			dmx_interface.render()
-		self.play(self.note)
+		self.play()
 
 	# State ERROR
 	def error(self):
