@@ -29,16 +29,19 @@ LED_READY = 30
 LED_ACTIVE = 250
 LED_ERROR = 10
 
+DMX_ENABLE = True
+
 # SONS
 SOUND_PATH = os.path.join(os.getcwd(), "sons")
 
 # CTRL-C Handler
 RUN = True
-def signal_handler(signal, frame):
+def quit(signal, frame):
 	global RUN
 	RUN = False
-	dmx_interface.blackout()
-	dmx_interface.render()
+	if DMX_ENABLE:
+		dmx_interface.blackout()
+		dmx_interface.render()
 	print('You pressed Ctrl+C!')
 
 # SEGMENT
@@ -66,25 +69,29 @@ class Segment:
 
 	# State OFF
 	def off(self):
-		dmx_interface.setChannel(self.dmx, LED_OFF)
-		dmx_interface.render()
+		if DMX_ENABLE:
+			dmx_interface.setChannel(self.dmx, LED_OFF)
+			dmx_interface.render()
 		self.stop()
 
 	# State READY
 	def ready(self, percent=1.0):
-		dmx_interface.setChannel(self.dmx, int(LED_READY*percent) )
-		dmx_interface.render()
+		if DMX_ENABLE:
+			dmx_interface.setChannel(self.dmx, int(LED_READY*percent) )
+			dmx_interface.render()
 
 	# State ACTIVE
 	def active(self):
-		dmx_interface.setChannel(self.dmx, LED_ACTIVE)
-		dmx_interface.render()
+		if DMX_ENABLE:
+			dmx_interface.setChannel(self.dmx, LED_ACTIVE)
+			dmx_interface.render()
 		self.play(self.note)
 
 	# State ERROR
 	def error(self):
-		dmx_interface.setChannel(self.dmx, LED_ERROR)
-		dmx_interface.render()
+		if DMX_ENABLE:
+			dmx_interface.setChannel(self.dmx, LED_ERROR)
+			dmx_interface.render()
 		self.play("error")
 
 
@@ -194,26 +201,36 @@ class Barriere:
 if __name__ == '__main__':
 
 	# Handle CTRL-C
-	syssig.signal(syssig.SIGINT, signal_handler)
+	syssig.signal(syssig.SIGINT, quit)
 
 	# DMX INTERFACE
-	dmx_interface = DmxPy.DmxPy('/dev/ttyUSB0')
-	dmx_interface.blackout()
-	dmx_interface.render()
+	try:
+		dmx_interface = DmxPy.DmxPy('/dev/ttyUSB0')
+	except:
+		DMX_ENABLE = False
+		print "DMX disabled"
+
+	if DMX_ENABLE:
+		dmx_interface.blackout()
+		dmx_interface.render()
 
 
 	# ARDUINO INTERFACE
-	arduino = serial.Serial('/dev/ttyACM0', 9600, timeout=0.01)
+	try:
+		arduino = serial.Serial('/dev/ttyACM0', 9600, timeout=0.01)
+	except:
+		print "No Arduino found at "+"/dev/ttyACM0"
+		quit()
 
 	# CREATE BARRIERE
 	barriere = Barriere(CONFIG)
 	barriere.start()
 
 	while RUN:
-		dmx_interface.full()
 		# Read arduino serial
 		val_read_raw = arduino.readline().strip()
 		if val_read_raw != "":
+			print val_read_raw
 			val_read = val_read_raw.split(":")
 			if val_read[0] == 'PIN':
 				if val_read[2] == '1':

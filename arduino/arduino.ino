@@ -1,4 +1,4 @@
-#define DIGIPINMAX 13
+#define DIGIPINMAX 50
 bool values[ DIGIPINMAX+1 ];
 
 void setup() {
@@ -19,12 +19,13 @@ void printValues() {
 void loop() {
   boolean change = false;
   for (int i = 2; i <= DIGIPINMAX; i++) {
-    int capa = readCapacitivePin( i ) > 3;
+    int readVal = readCapacitivePin( i );
+    bool capa =  readVal > 4;
     if (values[i] != capa ) {
       //change = true;
       Serial.println("PIN:"+String(i)+":"+String(capa));
+      values[i] = capa;
     }
-    values[i] = capa;
   }
 
   if ( change ) {

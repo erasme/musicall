@@ -4,7 +4,7 @@
 // how much capacitance is on the pin
 // When you touch the pin, or whatever you have
 // attached to it, the number will get higher
-#include "pins_arduino.h" // Arduino pre-1.0 needs this
+//#include "pins_arduino.h" // Arduino pre-1.0 needs this
 uint8_t readCapacitivePin(int pinToMeasure) {
   // Variables used to translate from Arduino to AVR pin naming
   volatile uint8_t* port;
