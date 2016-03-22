@@ -61,10 +61,12 @@ class Segment:
 			self.player = None
 
 	# Music PLAY
-	def play(self):
+	def play(self, note=None):
 		if self.player:
 			self.stop()
-		audiofile = os.path.join(SOUND_PATH, self.note+".wav")
+		if not note:
+			note = self.note
+		audiofile = os.path.join(SOUND_PATH, note+".wav")
 		self.player = subprocess.Popen(["aplay", audiofile], stdout=subprocess.PIPE,
                            stderr=subprocess.PIPE)
 
@@ -246,6 +248,9 @@ if __name__ == '__main__':
 		seg.play()
 		time.sleep(0.5)
 		seg.stop()
+	seg.play("error")
+	time.sleep(0.5)
+	seg.stop()
 	print "done"
 
 	while RUN:
