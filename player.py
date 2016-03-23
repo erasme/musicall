@@ -25,7 +25,7 @@ CONFIG.append([ [22, 279, "Do", "drums2/stab"], [23, 278, "Fa", "drums2/snare2"]
 CONFIG.append([ [26, 291, "Do", "drums2/kick"], [27, 290, "Fa", "drums2/hat-rev"], [28, 289, "Sol", "drums2/crash"], [29, 288, "Do_aigu", "drums2/closed"]  ])
 CONFIG.append([ [30, 295, "Do", "Do"], [31, 294, "Fa", "Fa"], [32, 293, "Sol", "Sol"], [33, 292, "Do_aigu", "Do_aigu"]  ])
 CONFIG.append([ [34, 299, "Do", "drums2/closed"], [35, 298, "Fa", "drums2/crash"], [36, 297, "Sol", "drums2/hat-rev"], [37, 296, "Do_aigu", "drums2/kick"]  ])
-CONFIG.append([ [38, 303, "Do", "drums2/roll-rev"], [39, 302, "Fa", "drums2/snare2"], [40, 301, "Sol", "drums2/stab"], [41, 300, "Do_aigu", "fx/fx1"]  ])
+CONFIG.append([ [38, 313, "Do", "drums2/roll-rev"], [39, 302, "Fa", "drums2/snare2"], [40, 301, "Sol", "drums2/stab"], [41, 300, "Do_aigu", "fx/fx1"]  ])
 CONFIG.append([ [42, 307, "Do", "Do"], [43, 306, "Fa", "Fa"], [44, 305, "Sol", "Sol"], [45, 304, "Do_aigu", "Do_aigu"]  ])
 CONFIG.append([ [46, 311, "Do", "fx/fx2"], [47, 310, "Fa", "fx/fx3"], [48, 312, "Sol", "fx/fx4"], [49, 308, "Do_aigu", "drums2/kick"]  ])
 
