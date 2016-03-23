@@ -117,6 +117,7 @@ class Barreau:
 		self.state = 0
 		for seg_conf in config:
 			self.segments.append( Segment(seg_conf) )
+			global SEGMENTS_STATE
 			SEGMENTS_STATE[seg_conf[0]] = 0;
 
 	# Stop all segments, and remove target
@@ -200,6 +201,7 @@ class Barriere:
 			percent -= 1.0/(SEGMENT_PRE+1)
 
 	def touch(self, pin):
+		global SEGMENTS_STATE
 		SEGMENTS_STATE[pin] = 1;
 		doNext = self.barreaux[self.readybar].touch(pin)
 		if doNext:
@@ -211,6 +213,7 @@ class Barriere:
 
 
 	def release(self, pin):
+		global SEGMENTS_STATE
 		SEGMENTS_STATE[pin] = 0;
 
 
