@@ -273,6 +273,7 @@ if __name__ == '__main__':
 						dmx_interface.setall(2)
 						dmx_interface.render()
 					CALIBRATING = False
+					print "Now ready to play !"
 
 			else:
 				if val_read[0] == 'PIN':
