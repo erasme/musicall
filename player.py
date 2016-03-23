@@ -250,6 +250,7 @@ class Barriere:
 
 	def checkSwitch(self):
 		switch = True
+		global MODE
 		if MODE == 'TILE':
 			for p in MODE_PIANO:
 				switch = switch and SEGMENTS_STATE[p]
