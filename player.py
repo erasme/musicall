@@ -27,7 +27,7 @@ CONFIG.append([ [30, 295, "Do", "Do"], [31, 294, "Fa", "Fa"], [32, 293, "Sol", "
 CONFIG.append([ [34, 299, "Do", "drums2/closed"], [35, 298, "Fa", "drums2/crash"], [36, 297, "Sol", "drums2/hat-rev"], [37, 296, "Do_aigu", "drums2/kick"]  ])
 CONFIG.append([ [38, 303, "Do", "drums2/roll-rev"], [39, 302, "Fa", "drums2/snare2"], [40, 301, "Sol", "drums2/stab"], [41, 300, "Do_aigu", "fx/fx1"]  ])
 CONFIG.append([ [42, 307, "Do", "Do"], [43, 306, "Fa", "Fa"], [44, 305, "Sol", "Sol"], [45, 304, "Do_aigu", "Do_aigu"]  ])
-CONFIG.append([ [46, 311, "Do", "fx/fx2"], [47, 310, "Fa", "fx/fx3"], [48, 309, "Sol", "fx/fx4"], [49, 308, "Do_aigu", "drums2/kick"]  ])
+CONFIG.append([ [46, 311, "Do", "fx/fx2"], [47, 310, "Fa", "fx/fx3"], [48, 312, "Sol", "fx/fx4"], [49, 308, "Do_aigu", "drums2/kick"]  ])
 
 
 SEGMENT_PRE = 1		# Number of Segment to introduce (minimum 1)
