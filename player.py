@@ -318,7 +318,7 @@ if __name__ == '__main__':
 	# TEST Sound
 	sys.stdout.write ("Testing SOUND ... ")
 	for n in NOTES:
-		seg = Segment([0,0,n]);
+		seg = Segment([0,0,n,""]);
 		seg.play()
 		time.sleep(0.3)
 		seg.stop()
