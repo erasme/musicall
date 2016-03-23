@@ -241,10 +241,11 @@ if __name__ == '__main__':
 	CALIBRATING = True
 
 	# TEST DMX
-	sys.stdout.write  ("Testing DMX ... ")
-	dmx_interface.setall(20)
-	dmx_interface.render()
-	print "done"
+	if DMX_ENABLE:
+		sys.stdout.write  ("Testing DMX ... ")
+		dmx_interface.setall(20)
+		dmx_interface.render()
+		print "done"
 
 	# TEST Sound
 	sys.stdout.write ("Testing SOUND ... ")
@@ -268,8 +269,9 @@ if __name__ == '__main__':
 
 			if CALIBRATING:
 				if val_read[0] == 'Calibrated':
-					dmx_interface.setall(2)
-					dmx_interface.render()
+					if DMX_ENABLE:
+						dmx_interface.setall(2)
+						dmx_interface.render()
 					CALIBRATING = False
 
 			else:
@@ -280,8 +282,9 @@ if __name__ == '__main__':
 
 						# Start Barriere on first touch
 						if INIT_STATE:
-							dmx_interface.setall(0)
-							dmx_interface.render()
+							if DMX_ENABLE:
+								dmx_interface.setall(0)
+								dmx_interface.render()
 							barriere.start()
 							INIT_STATE = False
 
