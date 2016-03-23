@@ -219,7 +219,7 @@ class Barriere:
 		SEGMENTS_STATE[pin] = 1;
 
 		# Check if MODE SWITCH triggered
-		self.checkSwitch():
+		self.checkSwitch()
 
 		# TILE MODE
 		if MODE == 'TILE':
