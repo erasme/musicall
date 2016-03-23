@@ -220,7 +220,7 @@ class Barriere:
 	def checkSwitch(self):
 		for p in PIANO_MODE:
 			if not SEGMENTS_STATE[p]: return False
-		return TRUE
+		return True
 
 
 
