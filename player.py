@@ -32,7 +32,9 @@ SEGMENT_KEEP = 0	# Number of Segment to keep playing while note active anymore
 SEGMENTS_STATE = {}
 
 #SWITCH Combinaison
-PIANO_MODE = [5,9,13]
+MODE = 'TILE'			# TILE / PIANO
+MODE_PIANO = [5,9,13]
+MODE_TILE = [4,8,12]
 
 LED_OFF = 0
 LED_READY = 5
@@ -184,9 +186,21 @@ class Barriere:
 	# Init every BAR and start sequence
 	def start(self):
 		self.stop()
-		self.next()
 
-	def next(self):
+		# TILE: start first BAR
+		if MODE == 'TILE':
+			print "STARTING TILE MODE"
+			self.nexttile()
+
+		# PIANO: put everybody READY
+		elif MODE == 'PIANO':
+			print "STARTING PIANO MODE"
+			for bar in self.barreaux:
+				for seg in bar.segments:
+					seg.stop()
+					seg.ready()
+
+	def nexttile(self):
 		# STOP N-SEGMENT_KEEP BAR
 		indexStop = (self.readybar+self.size-1-SEGMENT_KEEP) % self.size
 		self.barreaux[indexStop].stop()
@@ -203,24 +217,53 @@ class Barriere:
 	def touch(self, pin):
 		global SEGMENTS_STATE
 		SEGMENTS_STATE[pin] = 1;
-		doNext = self.barreaux[self.readybar].touch(pin)
-		if doNext:
-			self.next()
 
-		# Switch to other mode
-		if self.checkSwitch():
-			print 'SWITCH TO PIANO MODE'
+		# Check if MODE SWITCH triggered
+		self.checkSwitch():
+
+		# TILE MODE
+		if MODE == 'TILE':
+			doNext = self.barreaux[self.readybar].touch(pin)
+			if doNext:
+				self.nexttile()
+
+		# PIANO MODE
+		if MODE == 'PIANO':
+			for bar in self.barreaux:
+				for seg in bar.segments:
+					if seg.pin == pin:
+						seg.active()
 
 
 	def release(self, pin):
 		global SEGMENTS_STATE
 		SEGMENTS_STATE[pin] = 0;
 
+		# PIANO MODE
+		if MODE == 'PIANO':
+			for bar in self.barreaux:
+				for seg in bar.segments:
+					if seg.pin == pin:
+						seg.stop()
+						seg.ready()
+
 
 	def checkSwitch(self):
-		for p in PIANO_MODE:
-			if not SEGMENTS_STATE[p]: return False
-		return True
+		switch = True
+		if MODE == 'TILE':
+			for p in MODE_PIANO:
+				switch = switch and SEGMENTS_STATE[p]
+			if switch:
+				MODE = 'PIANO'
+				self.start()
+
+		if MODE == 'PIANO':
+			for p in MODE_TILE:
+				switch = switch and SEGMENTS_STATE[p]
+			if switch:
+				MODE = 'TILE'
+				self.start()
+
 
 
 
