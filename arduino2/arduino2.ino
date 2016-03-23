@@ -1,8 +1,10 @@
 #define DIGIPINMAX 50
+int means[ DIGIPINMAX+1 ];
 bool values[ DIGIPINMAX+1 ];
 int triggers[ DIGIPINMAX+1 ];
-const int RESILIENCELOW = 5;
-const int RESILIENCEHIGH = 10;
+const int RESILIENCELOW = -5;  //For High Values
+const int RESILIENCEMID = -2;  //For Mid values
+const int RESILIENCEHIGH = 5;  //For Low values
 const int EXTREM = 65;
 int MAXTRIG = EXTREM-8;
 const int CALIB = 10000;
@@ -41,8 +43,10 @@ void setup() {
 
   // CALCULATE TRIGGERS
   for (int i = 2; i <= DIGIPINMAX; i++) {    
-    if (peaks[i]<(EXTREM/2)) 
+    if (peaks[i]<(EXTREM/3)) 
       triggers[i] = min(MAXTRIG,(peaks[i]+RESILIENCEHIGH));
+    else if (peaks[i]<(2*EXTREM/3)) 
+      triggers[i] = min(MAXTRIG,(peaks[i]+RESILIENCEMID));
     else
       triggers[i] = min(MAXTRIG,(peaks[i]+RESILIENCELOW));
     Serial.print(triggers[i]);
@@ -57,17 +61,26 @@ void setup() {
 
 
 void loop() {
-  boolean change = false;
-  for (int i = 2; i <= DIGIPINMAX; i++) {
-    int readVal = readCapacitivePin( i );
-    bool capa =  (readVal >= triggers[i]);
-    //if (i==38) Serial.println("PIN:"+String(i)+":"+String(readVal)+"/"+String(triggers[i]));
+
+  for (int i = 2; i <= DIGIPINMAX; i++) means[i] = 0;
+
+  int Nround = 4;
+  for (int rnd=0; rnd < Nround; rnd++)
+    for (int i = 2; i <= DIGIPINMAX; i++)
+      means[i] += readCapacitivePin( i );
     
+  for (int i = 2; i <= DIGIPINMAX; i++)
+      means[i] = means[i]/4;
+
+  for (int i = 2; i <= DIGIPINMAX; i++) {
+    bool capa =  (means[i] >= triggers[i]);
     if (values[i] != capa ) {
       Serial.println("PIN:"+String(i)+":"+String(capa)+":"+String(triggers[i]));
       values[i] = capa;
     }
   }
+  
+  
 
   //delay(10);
 }
