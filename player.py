@@ -29,7 +29,7 @@ CONFIG.append([ [46, 311, "Do"], [47, 310, "Fa"], [48, 309, "Sol"], [49, 308, "D
 
 SEGMENT_PRE = 1		# Number of Segment to introduce (minimum 1)
 SEGMENT_KEEP = 0	# Number of Segment to keep playing while note active anymore
-SEGMENTS_STATE = []
+SEGMENTS_STATE = {}
 
 #SWITCH Combinaison
 PIANO_MODE = [5,9,13]
