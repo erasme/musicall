@@ -309,5 +309,5 @@ if __name__ == '__main__':
 
 					#Release event
 					else:
-						if !INIT_STATE:
+						if not INIT_STATE:
 							barriere.release(int(val_read[1]))
