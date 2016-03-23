@@ -29,6 +29,10 @@ CONFIG.append([ [46, 311, "Do"], [47, 310, "Fa"], [48, 309, "Sol"], [49, 308, "D
 
 SEGMENT_PRE = 1		# Number of Segment to introduce (minimum 1)
 SEGMENT_KEEP = 0	# Number of Segment to keep playing while note active anymore
+SEGMENTS_STATE = []
+
+#SWITCH Combinaison
+PIANO_MODE = [5,9,13]
 
 LED_OFF = 0
 LED_READY = 5
@@ -113,6 +117,7 @@ class Barreau:
 		self.state = 0
 		for seg_conf in config:
 			self.segments.append( Segment(seg_conf) )
+			SEGMENTS_STATE[seg_conf[0]] = 0;
 
 	# Stop all segments, and remove target
 	def stop(self):
@@ -195,17 +200,26 @@ class Barriere:
 			percent -= 1.0/(SEGMENT_PRE+1)
 
 	def touch(self, pin):
+		SEGMENTS_STATE[pin] = 1;
 		doNext = self.barreaux[self.readybar].touch(pin)
 		if doNext:
 			self.next()
 
+		# Switch to other mode
+		if self.checkSwitch():
+			print 'SWITCH TO PIANO MODE'
+
+
 	def release(self, pin):
-		# doNext = self.barreaux[self.readybar].release(pin)
-		# if doNext:
-		# 	self.next()
-		# else:
-		# 	print 'Release outside ready BAR'
-		pass
+		SEGMENTS_STATE[pin] = 0;
+
+
+	def checkSwitch(self):
+		for p in PIANO_MODE:
+			if not SEGMENTS_STATE[p]: return False
+		return TRUE
+
+
 
 
 if __name__ == '__main__':
@@ -293,6 +307,7 @@ if __name__ == '__main__':
 						else:
 							barriere.touch(int(val_read[1]))
 
-						# Release event
-						# elif not INIT_STATE:
-						# 	barriere.release(int(val_read[1]))
+					#Release event
+					else:
+						if !INIT_STATE:
+							barriere.release(int(val_read[1]))
